@@ -38,7 +38,7 @@ public class MergerTest {
 			cnt++;
 		}
 		reader.close();
-		assertEquals(cnt, 12);
+		assertEquals(cnt, 13);
 		outputFile.delete();
 	}
 }

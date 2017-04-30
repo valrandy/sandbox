@@ -13,7 +13,7 @@ public class Merger {
 
 	/**
 	 * Merge the previously split files into a single one, use a treemap to sort and
-	 * remove duplicates from the smaller files
+	 * remove duplicates from the smaller files, do this per line
 	 * @param inputFiles
 	 * @param outputFile
 	 * 
@@ -32,13 +32,13 @@ public class Merger {
 		try {
 			while(!map.isEmpty()) {
 				String line = map.keySet().iterator().next();
-				int index = map.get(line);
 				map.remove(line);
 				writer.write(line);
 				writer.newLine();
-				line = reader[index].readLine();
-				if(line != null ) {				
-					map.put(line, index);
+				for(int i=0; i<inputFiles.size(); i++) {
+					line = reader[i].readLine();
+					if(line !=null)
+						map.put(line, i);
 				}
 			}
 		} finally {
